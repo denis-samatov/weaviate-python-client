@@ -1,3 +1,5 @@
+Fork scope: `purpose, attribution and qualification limits <FORK_SCOPE.md>`_.
+
 Weaviate python client
 ======================
 .. image:: https://raw.githubusercontent.com/weaviate/weaviate/19de0956c69b66c5552447e84d016f4fe29d12c9/docs/assets/weaviate-logo.png
