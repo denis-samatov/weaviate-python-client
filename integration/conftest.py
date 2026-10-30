@@ -40,8 +40,16 @@ from weaviate.collections.classes.config import (
 )
 from weaviate.collections.classes.config_named_vectors import _NamedVectorConfigCreate
 from weaviate.collections.classes.types import Properties
+from test.package_version_feed import mock_current_release_feed
 from weaviate.config import AdditionalConfig
 from weaviate.exceptions import UnexpectedStatusCodeError
+
+
+@pytest.fixture(autouse=True)
+def current_release_feed(monkeypatch: pytest.MonkeyPatch) -> None:
+    # Auth/filter warning assertions concern the live server, not PyPI announcements.
+    # Only this external response is synthetic; all server requests pass through.
+    mock_current_release_feed(monkeypatch)
 
 
 class CollectionFactory(Protocol):

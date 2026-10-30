@@ -1,0 +1,15 @@
+# SDK runtime dependencies from setup.cfg, plus offline test/build tooling.
+httpx>=0.26.0,<0.29.0
+validators>=0.34.0,<1
+authlib>=1.7.1,<2
+pydantic>=2.12,<3
+grpcio>=1.59.5,<1.80
+protobuf>=4.21.6,<7
+packaging>=21
+pytest==9.2.0
+build==1.6.1
+setuptools==84.2.1
+setuptools-scm>=9,<10
+wheel==0.48.0
+pip-audit==2.10.1
+ruff==0.17.3
