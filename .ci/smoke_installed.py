@@ -1,4 +1,5 @@
 """Verify the installed wheel from a fresh directory, outside the source checkout."""
+
 import os
 from pathlib import Path
 import subprocess

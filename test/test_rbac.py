@@ -49,4 +49,7 @@ def test_backup_collection_sequence_and_combined_actions_round_trip() -> None:
     assert {permission.collection for permission in permissions} == {"Books", "Articles"}
     for permission in permissions:
         assert permission.actions == {Actions.Backups.READ, Actions.Backups.MANAGE}
-        assert {entry["action"] for entry in permission._to_weaviate()} == {"read_backups", "manage_backups"}
+        assert {entry["action"] for entry in permission._to_weaviate()} == {
+            "read_backups",
+            "manage_backups",
+        }
