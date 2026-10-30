@@ -1,5 +1,6 @@
 import datetime
 import time
+import uuid
 from typing import Any, Dict, Generator, List, Optional, Union
 
 import pytest as pytest
@@ -70,26 +71,25 @@ def _expected_async_enabled(version: _ServerVersion, factor: int) -> bool:
 @pytest.fixture(scope="module")
 def client() -> Generator[weaviate.WeaviateClient, None, None]:
     client = weaviate.connect_to_local(port=8087)
-    client.collections.delete_all()
-    yield client
-    client.collections.delete_all()
-    client.close()
+    try:
+        yield client
+    finally:
+        client.close()
 
 
 def test_collections_list(client: weaviate.WeaviateClient) -> None:
-    client.collections.create(
-        name="TestCollectionsList", vectorizer_config=Configure.Vectorizer.none()
-    )
+    name = f"TestCollectionsList_{uuid.uuid4().hex}"
+    client.collections.create(name=name, vectorizer_config=Configure.Vectorizer.none())
+    try:
+        collections = client.collections.list_all()
+        assert name in list(collections.keys())
+        assert isinstance(collections[name], _CollectionConfigSimple)
 
-    collections = client.collections.list_all()
-    assert "TestCollectionsList" in list(collections.keys())
-    assert isinstance(collections["TestCollectionsList"], _CollectionConfigSimple)
-
-    collection = client.collections.list_all(False)
-    assert "TestCollectionsList" in list(collections.keys())
-    assert isinstance(collection["TestCollectionsList"], _CollectionConfig)
-
-    client.collections.delete("TestCollectionsList")
+        collection = client.collections.list_all(False)
+        assert name in list(collection.keys())
+        assert isinstance(collection[name], _CollectionConfig)
+    finally:
+        client.collections.delete(name)
 
 
 def test_collection_get_simple(collection_factory: CollectionFactory) -> None:
