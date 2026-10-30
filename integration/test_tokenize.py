@@ -14,6 +14,7 @@ Server-side behavior this client relies on:
   endpoint — the server rejects requests that set both.
 """
 
+import uuid
 from typing import AsyncGenerator, Generator
 
 import pytest
@@ -59,8 +60,7 @@ async def async_client() -> AsyncGenerator[weaviate.WeaviateAsyncClient, None]:
 @pytest.fixture
 def recipe_collection(client: weaviate.WeaviateClient) -> Generator:
     """Collection with a `recipe` word-tokenized property and an en + ["quick"] stopwords config."""
-    name = "TestTokenizeRecipe"
-    client.collections.delete(name)
+    name = f"TestTokenizeRecipe_{uuid.uuid4().hex}"
     client.collections.create_from_dict(
         {
             "class": name,
