@@ -1,5 +1,23 @@
 Fork scope: `purpose, attribution and qualification limits <FORK_SCOPE.md>`_.
 
+|fork-scope| |rbac-pr| |digitalocean-pr| |upstream-sdk|
+
+.. |fork-scope| image:: https://img.shields.io/badge/Fork%20scope-0F766E?style=for-the-badge
+   :target: FORK_SCOPE.md
+   :alt: Fork scope
+
+.. |rbac-pr| image:: https://img.shields.io/badge/Read--only%20backup%20PR-1D4ED8?style=for-the-badge
+   :target: https://github.com/weaviate/weaviate-python-client/pull/2186
+   :alt: Read-only backup PR
+
+.. |digitalocean-pr| image:: https://img.shields.io/badge/DigitalOcean%20integration%20PR-6D28D9?style=for-the-badge
+   :target: https://github.com/weaviate/weaviate-python-client/pull/2153
+   :alt: DigitalOcean integration PR
+
+.. |upstream-sdk| image:: https://img.shields.io/badge/Upstream%20SDK-475569?style=for-the-badge
+   :target: https://github.com/weaviate/weaviate-python-client
+   :alt: Upstream SDK
+
 Weaviate python client
 ======================
 .. image:: https://raw.githubusercontent.com/weaviate/weaviate/19de0956c69b66c5552447e84d016f4fe29d12c9/docs/assets/weaviate-logo.png
